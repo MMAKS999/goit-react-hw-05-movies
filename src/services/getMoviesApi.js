@@ -43,15 +43,18 @@ export const searchMoviesApi = async searchMovie => {
 
 export const infoMovieApi = async id => {
   try {
-    const response = await axios.get(`https://api.themoviedb.org/3/movie/${id}`, {
-      params: {
-        language: 'en-US',
-      },
-      headers: {
-        accept: 'application/json',
-        Authorization: `Bearer ${key}`,
-      },
-    });
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/movie/${id}`,
+      {
+        params: {
+          language: 'en-US',
+        },
+        headers: {
+          accept: 'application/json',
+          Authorization: `Bearer ${key}`,
+        },
+      }
+    );
     console.log(response.data);
     return response.data;
   } catch (error) {
@@ -59,4 +62,38 @@ export const infoMovieApi = async id => {
   }
 };
 
+export const castMovieApi = async id => {
+  try {
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/movie/${id}/credits?language=en-US'`,
+      {
+        headers: {
+          accept: 'application/json',
+          Authorization: `Bearer ${key}`,
+        },
+      }
+    );
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    throw new Error(`No information on request`);
+  }
+};
 
+export const reviewsMovieApi = async id => {
+  try {
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/movie/${id}/reviews?language=en-US'`,
+      {
+        headers: {
+          accept: 'application/json',
+          Authorization: `Bearer ${key}`,
+        },
+      }
+    );
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    throw new Error(`No information on request`);
+  }
+};
