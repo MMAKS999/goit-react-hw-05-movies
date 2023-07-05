@@ -2,8 +2,6 @@ import { Routes, Route } from 'react-router-dom';
 import { lazy } from 'react';
 import { getMoviesApi } from '../services/getMoviesApi';
 import Layout from './Layout/Layout';
-// import Movies from '../pages/Movies';
-// import FilmInfo from '../pages/FilmInfo';
 import Cast from './infoFilm/Cast';
 import Reviews from './infoFilm/Reviews';
 
@@ -11,8 +9,6 @@ const Home = lazy(() => import('../pages/Home'));
 const FilmInfo = lazy(() => import('../pages/FilmInfo'));
 const Movies = lazy(() => import('../pages/Movies'));
 
-
-// import Home from '../pages/Home';
 
 export const App = () => {
   getMoviesApi();
