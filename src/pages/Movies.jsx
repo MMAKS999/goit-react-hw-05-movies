@@ -5,6 +5,8 @@ import { searchMoviesApi } from '../services/getMoviesApi';
 const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchMovies, setSearchMovies] = useState();
+  const [loading, setLoading] = useState(true);
+
   const location = useLocation();
   const query = searchParams.get('query') ?? '';
 
@@ -15,7 +17,6 @@ const Movies = () => {
       return setSearchParams({}); //прибираємо параметр в URL
     }
     setSearchParams({ query: ev.target.elements.search.value });
-    console.log(query);
 
     ev.target.reset();
   };
@@ -28,8 +29,10 @@ const Movies = () => {
         }
         const { results } = await searchMoviesApi(query);
         setSearchMovies(results);
+        setLoading(false);
       } catch (error) {
         console.error(error);
+        setLoading(false);
       }
     };
     getSearchMoviesApi();
@@ -54,7 +57,7 @@ const Movies = () => {
           ))}
         </ul>
       ) : (
-        <p>No movies found</p>
+        !loading && <p>No movies found</p>
       )}
     </>
   );

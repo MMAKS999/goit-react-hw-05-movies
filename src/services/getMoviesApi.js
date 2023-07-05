@@ -55,7 +55,6 @@ export const infoMovieApi = async id => {
         },
       }
     );
-    console.log(response.data);
     return response.data;
   } catch (error) {
     throw new Error(`No information on request`);
@@ -73,7 +72,6 @@ export const castMovieApi = async id => {
         },
       }
     );
-    console.log(response.data);
     return response.data;
   } catch (error) {
     throw new Error(`No information on request`);
@@ -91,7 +89,6 @@ export const reviewsMovieApi = async id => {
         },
       }
     );
-    console.log(response.data);
     return response.data;
   } catch (error) {
     throw new Error(`No information on request`);

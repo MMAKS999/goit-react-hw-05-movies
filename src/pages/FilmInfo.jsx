@@ -7,6 +7,8 @@ const FilmInfo = () => {
   const [infoMovie, setInfoMovie] = useState({});
   const { id } = useParams();
   const location = useLocation();
+  const [loading, setLoading] = useState(true);
+
   const backLinkLocationRef = useRef(location.state?.from ?? '/');
   // console.log(id);
 
@@ -15,8 +17,10 @@ const FilmInfo = () => {
       try {
         const data = await infoMovieApi(id);
         setInfoMovie(data);
+        setLoading(false);
       } catch (error) {
         console.error(error);
+        setLoading(false);
       }
     };
 
@@ -26,7 +30,6 @@ const FilmInfo = () => {
     original_title,
     release_date,
     overview,
-    poster_path,
     genres,
     backdrop_path,
     vote_average,
@@ -34,7 +37,7 @@ const FilmInfo = () => {
   return (
     <>
       <Link to={backLinkLocationRef.current}> Go back</Link>
-      {infoMovie && (
+      {!loading && infoMovie && (
         <div>
           <div>
             <img
@@ -43,12 +46,18 @@ const FilmInfo = () => {
             />
           </div>
           <div>
-            <h1> {original_title} </h1>
+            <h1>
+              {' '}
+              {original_title} <span>({release_date})</span>{' '}
+            </h1>
             <p>User Score: {vote_average} </p>
             <h2>Overview</h2>
             <p>{overview}</p>
             <h2>Genres</h2>
-            <p>{genres && genres.map(({ name }) => <span> {name}</span>)}</p>
+            <p>
+              {genres &&
+                genres.map(({ name }) => <span key={name}> {name}</span>)}
+            </p>
           </div>
         </div>
       )}

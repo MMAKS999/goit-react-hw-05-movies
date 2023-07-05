@@ -4,34 +4,42 @@ import { useParams } from 'react-router-dom';
 
 const Reviews = () => {
   const [reviewsMovie, setReviewsMovie] = useState();
+  const [loading, setLoading] = useState(true);
   const { id } = useParams();
   useEffect(() => {
     const getReviewsMovieApi = async () => {
       try {
         const { results } = await reviewsMovieApi(id);
         setReviewsMovie(results);
+        setLoading(false);
       } catch (error) {
         console.error(error);
+        setLoading(false);
       }
     };
 
     getReviewsMovieApi();
   }, [id]);
-  console.log(reviewsMovie);
 
   return (
-    <div>
-      Reviews
-      <ul>
-        {reviewsMovie &&
-          reviewsMovie.map(({ author, content, id }) => (
-            <li key={id}>
-              <p>{author}</p>
-              <p> {content}</p>
-            </li>
-          ))}
-      </ul>
-    </div>
+    <>
+      {!loading && (
+        <div>
+          {reviewsMovie && reviewsMovie.length ? (
+            <ul>
+              {reviewsMovie.map(({ author, content, id }) => (
+                <li key={id}>
+                  <h3>{author}</h3>
+                  <p> {content}</p>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p> We don't have any reviews for this movie </p>
+          )}
+        </div>
+      )}
+    </>
   );
 };
 
