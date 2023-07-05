@@ -7,7 +7,6 @@ import FilmInfo from '../pages/FilmInfo';
 import Cast from './infoFilm/Cast';
 import Reviews from './infoFilm/Reviews';
 
-// const key = "8634ec4e24971631391084391baa12ea"
 export const App = () => {
   getMoviesApi();
   return (
