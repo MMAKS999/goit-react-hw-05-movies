@@ -3,7 +3,7 @@ import Home from '../pages/Home';
 import Movies from '../pages/Movies';
 import Layout from './Layout/Layout';
 import { getMoviesApi } from '../services/getMoviesApi';
-import FilmInfo from 'pages/FilmInfo';
+import FilmInfo from '../pages/FilmInfo';
 import Cast from './infoFilm/Cast';
 import Reviews from './infoFilm/Reviews';
 
