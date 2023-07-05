@@ -1,4 +1,6 @@
-import {  NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+
+
 const Header = () => {
   return (
     <nav className="navbar  navbar-expand-lg bg-body-tertiary">
