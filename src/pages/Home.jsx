@@ -2,19 +2,24 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { getMoviesApi } from '../services/getMoviesApi';
-import { Link, useLocation } from 'react-router-dom';
+import { MovieList } from '../components/MovieList/MovieList';
 
 const Home = () => {
   const [filmsTrendingToday, setFilmsTrendingToday] = useState([]);
-  const location = useLocation();
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  // 
 
   useEffect(() => {
     const getMovies = async () => {
       try {
+        setIsLoading(true);
         const { results } = await getMoviesApi();
         setFilmsTrendingToday(results);
       } catch (error) {
-        console.error(error);
+        setError(error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -23,16 +28,11 @@ const Home = () => {
   return (
     <>
       <h2>Trending today</h2>
-      <ul className="trendingFilms">
-        {filmsTrendingToday.map(({ original_title, id }) => (
-          <li key={id}>
-            <Link to={`/movies/${id}`} state={{ from: location }}>
-              {' '}
-              {original_title}{' '}
-            </Link>
-          </li>
-        ))}
-      </ul>
+      {isLoading && <p>Loading...</p>}
+      {error && <p>Oops.. Somesing went wrong...</p>}
+      {filmsTrendingToday.length > 0 && (
+        <MovieList movies={filmsTrendingToday} />
+      )}
     </>
   );
 };

@@ -8,19 +8,24 @@ const FilmInfo = () => {
   const { id } = useParams();
   const location = useLocation();
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const backLinkLocationRef = useRef(location.state?.from ?? '/');
-  // console.log(id);
 
   useEffect(() => {
     const getInfoMovieApi = async () => {
       try {
+        setIsLoading(true);
+        setLoading(true);
         const data = await infoMovieApi(id);
         setInfoMovie(data);
-        setLoading(false);
       } catch (error) {
-        console.error(error);
+        setError(error);
         setLoading(false);
+      } finally {
+        setLoading(false);
+        setIsLoading(false);
       }
     };
 
@@ -34,14 +39,24 @@ const FilmInfo = () => {
     backdrop_path,
     vote_average,
   } = infoMovie;
+
+  const defaultImg =
+    'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
   return (
     <>
       <Link to={backLinkLocationRef.current}> Go back</Link>
+      {isLoading && <p>Loading...</p>}
+      {error && <p>Oops.. Somesing went wrong...</p>}
       {!loading && infoMovie && (
         <div>
           <div>
             <img
-              src={`https://image.tmdb.org/t/p/w500/${backdrop_path}`}
+              src={
+                backdrop_path
+                  ? `https://image.tmdb.org/t/p/w500/${backdrop_path}`
+                  : defaultImg
+              }
+              width={300}
               alt={original_title}
             />
           </div>
