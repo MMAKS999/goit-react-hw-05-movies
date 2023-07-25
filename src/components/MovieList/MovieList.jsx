@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 export const MovieList = ({ movies }) => {
   const location = useLocation();
-  // console.log(movies);
   return (
     <ul className="trendingFilms">
       {movies.map(({ original_title, id }) => (
@@ -19,6 +18,11 @@ export const MovieList = ({ movies }) => {
 };
 
 MovieList.propTypes = {
-  movies: PropTypes.array.isRequired,
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      original_title: PropTypes.string,
+    })
+  ).isRequired,
 };
 

@@ -7,7 +7,6 @@ const FilmInfo = () => {
   const [infoMovie, setInfoMovie] = useState({});
   const { id } = useParams();
   const location = useLocation();
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -17,14 +16,11 @@ const FilmInfo = () => {
     const getInfoMovieApi = async () => {
       try {
         setIsLoading(true);
-        setLoading(true);
         const data = await infoMovieApi(id);
         setInfoMovie(data);
       } catch (error) {
         setError(error);
-        setLoading(false);
       } finally {
-        setLoading(false);
         setIsLoading(false);
       }
     };
@@ -47,7 +43,7 @@ const FilmInfo = () => {
       <Link to={backLinkLocationRef.current}> Go back</Link>
       {isLoading && <p>Loading...</p>}
       {error && <p>Oops.. Somesing went wrong...</p>}
-      {!loading && infoMovie && (
+      {!isLoading && infoMovie && (
         <div>
           <div>
             <img

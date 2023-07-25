@@ -1,19 +1,17 @@
 import { NavLink } from 'react-router-dom';
-
+import './Header.css';
 
 const Header = () => {
   return (
-    <nav className="navbar  navbar-expand-lg bg-body-tertiary">
-      <div className="container-fluid">
-        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div className="navbar-nav">
-            <NavLink className="nav-link " aria-current="page" to="/">
-              Home
-            </NavLink>
-            <NavLink className="nav-link" to="/movies">
-              Movies
-            </NavLink>
-          </div>
+    <nav className="navbarr">
+      <div className="navbarlink">
+        <div className="navbarnav">
+          <NavLink className="navlink " aria-current="page" to="/">
+            Home
+          </NavLink>
+          <NavLink className="navlink" to="/movies">
+            Movies
+          </NavLink>
         </div>
       </div>
     </nav>

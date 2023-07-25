@@ -1,0 +1,27 @@
+.navbarr{
+  height: 60px;
+  background-color: #adb5bd;
+
+  display: flex;
+  align-items: center;
+}
+
+.navbar-link{
+  display: flex;
+  flex-wrap: inherit;
+  align-items: center;
+  justify-content: space-between;
+}
+.navlink{
+  padding-left: 15px;
+  text-decoration: none;
+  color:grey;
+}
+.navlink:hover {
+  padding-left: 15px;
+  text-decoration: none;
+  color:yellow;
+}
+.active {
+ color:black;
+}

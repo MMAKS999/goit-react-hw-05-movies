@@ -7,7 +7,6 @@ import { MovieList } from '../components/MovieList/MovieList';
 const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchMovies, setSearchMovies] = useState();
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -19,7 +18,7 @@ const Movies = () => {
     if (value === '') {
       return setSearchParams({}); //прибираємо параметр в URL
     }
-    setSearchParams({ query: ev.target.elements.search.value });
+    setSearchParams({ query: ev.target.elements.search.value.trim()});
 
     ev.target.reset();
   };
@@ -33,10 +32,8 @@ const Movies = () => {
         setIsLoading(true);
         const { results } = await searchMoviesApi(query);
         setSearchMovies(results);
-        setLoading(false);
       } catch (error) {
         setError(error);
-        setLoading(false);
       } finally {
         setIsLoading(false);
       }
@@ -56,7 +53,7 @@ const Movies = () => {
       {searchMovies && searchMovies.length > 0 ? (
         <MovieList movies={searchMovies} />
       ) : (
-        !loading && <p>No movies found</p>
+        !isLoading && <p>No movies found</p>
       )}
     </>
   );
