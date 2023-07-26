@@ -2,13 +2,13 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { getMoviesApi } from '../services/getMoviesApi';
-import { MovieList } from '../components/MovieList/MovieList';
+import { MovieList } from '../components/movieList/MovieList';
 
 const Home = () => {
   const [filmsTrendingToday, setFilmsTrendingToday] = useState([]);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  // 
+  //
 
   useEffect(() => {
     const getMovies = async () => {

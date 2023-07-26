@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { searchMoviesApi } from '../services/getMoviesApi';
-import { MovieList } from '../components/MovieList/MovieList';
+import { MovieList } from '../components/movieList/MovieList';
 
 const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -18,7 +18,7 @@ const Movies = () => {
     if (value === '') {
       return setSearchParams({}); //прибираємо параметр в URL
     }
-    setSearchParams({ query: ev.target.elements.search.value.trim()});
+    setSearchParams({ query: ev.target.elements.search.value.trim() });
 
     ev.target.reset();
   };

@@ -1,5 +1,5 @@
 @import-normalize; /* bring in normalize.css styles */
-@import 'components/Header/Header.css';
+@import 'components/header/Header.css';
 
 body {
   margin: 0;
