@@ -7,6 +7,8 @@ const Cast = () => {
   const [castMovie, setCastMovie] = useState();
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
+  const [error, setError] = useState(null);
+
 
   useEffect(() => {
     const getCastMovieApi = async () => {
@@ -16,7 +18,9 @@ const Cast = () => {
         setCastMovie(cast);
         setLoading(false);
       } catch (error) {
-        console.error(error);
+        setError(error);
+        setLoading(false);
+      } finally {
         setLoading(false);
       }
     };
@@ -28,6 +32,8 @@ const Cast = () => {
 
   return (
     <div>
+      {error && <p>Oops.. Something went wrong...</p>}
+
       {loading ? (
         <div className="loader-container">
           <Oval color="#00BFFF" height={80} width={80} />

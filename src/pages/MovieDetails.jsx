@@ -42,7 +42,7 @@ const FilmInfo = () => {
     <>
       <Link to={backLinkLocationRef.current}> Go back</Link>
       {isLoading && <p>Loading...</p>}
-      {error && <p>Oops.. Somesing went wrong...</p>}
+      {error && <p>Oops.. Something went wrong...</p>}
       {!isLoading && infoMovie && (
         <div>
           <div>

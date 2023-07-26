@@ -6,6 +6,8 @@ const Reviews = () => {
   const [reviewsMovie, setReviewsMovie] = useState();
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
+  const [error, setError] = useState(null);
+
   useEffect(() => {
     const getReviewsMovieApi = async () => {
       try {
@@ -13,7 +15,9 @@ const Reviews = () => {
         setReviewsMovie(results);
         setLoading(false);
       } catch (error) {
-        console.error(error);
+        setError(error);
+        setLoading(false);
+      } finally {
         setLoading(false);
       }
     };
@@ -23,6 +27,7 @@ const Reviews = () => {
 
   return (
     <>
+      {error && <p>Oops.. Something went wrong...</p>}
       {!loading && (
         <div>
           {reviewsMovie && reviewsMovie.length ? (

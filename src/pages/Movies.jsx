@@ -49,7 +49,7 @@ const Movies = () => {
         <button type="submit">Search</button>
       </form>
       {isLoading && <p>Loading...</p>}
-      {error && <p>Oops.. Somesing went wrong...</p>}
+      {error && <p>Oops.. Something went wrong...</p>}
       {searchMovies && searchMovies.length > 0 ? (
         <MovieList movies={searchMovies} />
       ) : (
