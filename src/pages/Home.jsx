@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { getMoviesApi } from '../services/getMoviesApi';
-import { MovieList } from '../components/movieList/MovieList';
+import { MovieList } from '../components/MovieList/MovieList';
 
 const Home = () => {
   const [filmsTrendingToday, setFilmsTrendingToday] = useState([]);
